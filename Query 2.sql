@@ -1,12 +1,11 @@
--- 2.Show all film in COMEDY genre (using JOIN and WHERE clause)
+-- 3.find how many inventory of movie 'Dark' is available at each store (using GROUP BY)
 
-SELECT film.film_id,film. title,category.name, film.description 
-FROM film
-FULL OUTER JOIN film_category
-ON film.film_id = film_category.film_id
-FULL JOIN category
-ON film_category.category_id= category.category_id
-WHERE category.name = 'Comedy';
+Select count(inventory.store_id),inventory.store_id,inventory.film_id, film.title, film.description 
+from inventory 
+full outer join film on inventory.film_id=film.film_id
+where film.title LIKE '%Dark%'
+group by inventory.store_id,inventory.film_id, film.title, film.description;
+
 
 
 
